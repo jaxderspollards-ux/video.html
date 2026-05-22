@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>微信聊天</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+      background: #ededed;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh;
+    }
+    /* 手机外壳模拟 */
+    .phone-frame {
+      width: 375px; height: 667px;
+      background: #fff;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* 状态栏 */
+    .status-bar {
+      background: #ededed;
+      padding: 8px 20px; display: flex;
+      justify-content: space-between;
+      font-size: 12px; color: #333;
+    }
+    /* 聊天头部 */
+    .chat-header {
+      background: #ededed;
+      padding: 10px 20px; display: flex;
+      align-items: center;
+      gap: 10px; border-bottom: 1px solid #d9d9d9;
+    }
+    .chat-header .back { font-size: 18px; cursor: pointer; }
+    .chat-header .avatar {
+      width: 36px; height: 36px; border-radius: 6px;
+      background: #ffb3c6; display: flex; align-items: center;
+      justify-content: center; font-size: 16px;
+    }
+    .chat-header .name { font-size: 16px; font-weight: 600; }
+    /* 聊天内容 */
+    .chat-body {
+      flex: 1; background: #ededed;
+      padding: 15px; overflow-y: auto;
+      display: flex; flex-direction: column;
+      gap: 12px;
+    }
+    .time-divider {
+      text-align: center; font-size: 11px;
+      color: #999; margin: 8px 0;
+    }
+    .message {
+      max-width: 75%; padding: 10px 14px;
+      border-radius: 8px; font-size: 15px;
+      line-height: 1.5; position: relative;
+      word-break: break-all;
+    }
+    .message.received {
+      background: #fff; align-self: flex-start;
+      border-top-left-radius: 2px;
+    }
+    .message.sent {
+      background: #95ec69; align-self: flex-end;
+      border-top-right-radius: 2px;
+    }
+    .message .link-preview {
+      background: #f5f5f5; border-radius: 6px;
+      padding: 8px; margin-top: 6px; font-size: 13px;
+      color: #576b95; border: 1px solid #e0e0e0;
+    }
+    /* 底部输入栏 */
+    .chat-footer {
+      background: #f7f7f7; padding: 10px 15px;
+      display: flex; align-items: center; gap: 8px;
+      border-top: 1px solid #d9d9d9;
+    }
+    .chat-footer input {
+      flex: 1; padding: 8px 12px; border-radius: 20px;
+      border: 1px solid #d9d9d9; font-size: 14px;
+      background: #fff; outline: none;
+    }
+    .chat-footer .send-btn {
+      padding: 6px 14px; border-radius: 16px;
+      background: #07c160; color: #fff;
+      font-size: 14px; font-weight: 600;
+      border: none; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <span>21:15</span>
+      <span>📶 🔋 80%</span>
+    </div>
+    <!-- 聊天头部 -->
+    <div class="chat-header">
+      <span class="back">←</span>
+      <div class="avatar">💝</div>
+      <span class="name">小美</span>
+    </div>
+    <!-- 聊天内容 -->
+    <div class="chat-body" id="chatBody">
+      <!-- 三天前 -->
+      <div class="time-divider">5月21日 14:30</div>
+      <div class="message received">我们冷静一下吧</div>
+      
+      <!-- 今天 -->
+      <div class="time-divider">5月24日 21:15</div>
+      <div class="message received">
+        对不起，打开看看好吗？
+      </div>
+      <div class="message received" style="padding:6px 10px;">
+        <div class="link-preview" id="capsuleLink" style="cursor: pointer;">
+          💊 和好胶囊 · 专属回忆<br>
+          <span style="font-size:11px;color:#999;">点击打开</span>
+        </div>
+      </div>
+    </div>
+    <!-- 底部输入栏 -->
+    <div class="chat-footer">
+      <input type="text" placeholder="" disabled>
+      <button class="send-btn">发送</button>
+    </div>
+  </div>
+
+  <script>
+    // ========== 🔗 你的和好胶囊链接（改成你自己的） ==========
+    const CAPSULE_LINK = 'https://jaxderspollards-ux.github.io/你的仓库名/capsule.html';
+    // ========================================================
+
+    document.getElementById('capsuleLink').addEventListener('click', () => {
+      // 跳转到你的和好胶囊页面
+      window.location.href = CAPSULE_LINK;
+    });
+  </script>
+</body>
+</html>
